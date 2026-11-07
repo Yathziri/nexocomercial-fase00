@@ -1,0 +1,48 @@
+# Global parameters
+[global]
+	disable netbios = Yes
+	log file = /var/log/samba/log.%m
+	logging = file
+	map to guest = Bad User
+	max log size = 1000
+	obey pam restrictions = Yes
+	pam password change = Yes
+	panic action = /usr/share/samba/panic-action %d
+	passwd chat = *Enter\snew\s*\spassword:* %n\n *Retype\snew\s*\spassword:* %n\n *password\supdated\ssuccessfully* .
+	passwd program = /usr/bin/passwd %u
+	server role = standalone server
+	server string = %h server (Samba, Ubuntu)
+	unix password sync = Yes
+	usershare allow guests = Yes
+	idmap config * : backend = tdb
+
+
+[printers]
+	browseable = No
+	comment = All Printers
+	create mask = 0700
+	path = /var/tmp
+	printable = Yes
+
+
+[print$]
+	comment = Printer Drivers
+	path = /var/lib/samba/printers
+
+
+[ventas]
+	comment = Area de Ventas - NexoComercial
+	create mask = 0770
+	directory mask = 0770
+	path = /srv/nexocomercial/ventas
+	read only = No
+	valid users = @ventas
+
+
+[almacen]
+	comment = Area de Almacen - NexoComercial
+	create mask = 0770
+	directory mask = 0770
+	path = /srv/nexocomercial/almacen
+	read only = No
+	valid users = @almacen
